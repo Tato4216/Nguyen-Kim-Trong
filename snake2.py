@@ -15,15 +15,18 @@ GRID = 20
         # 20 X 20
 GRID_WIDTH = WIDTH / GRID
 GRID_HEIGHT = HEIGHT / GRID
+    # khởi tạo màn hình game
 screen = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
 surface = pygame.Surface(screen.get_size())
 surface = surface.convert()
-     # di chuyển của con rắn qua từng ô
+
+     # các thao tác di chuyển của con rắn qua từng ô
 UP    = (0, -1)
 DOWN  = (0, 1)
 LEFT  = (-1, 0)
 RIGHT = (1, 0)
-stop =(0,0)
+stop  = (0,0)
+
 # vẽ bàn caro với 2 màu 
 def drawGrid(surface):
     for y in range(0, int(GRID_HEIGHT)):
@@ -104,9 +107,14 @@ class Snake(object):
         for p in self.positions:
             r = pygame.Rect((p[0], p[1]), (GRID, GRID))
             pygame.draw.rect(surface, self.color , r)
-            #pygame.draw.rect(surface, (144,238,144), r, 1)
+           
             
-    # thiết lập các phím điều khiển con rắn            
+    # thiết lập các phím điều khiển con rắn      
+        # UP là đi lên
+        # DOWN là đi xuống
+        # LEFT là rẽ trái
+        # RIGHT là rẽ phải
+        # STOP là dừng      
     def handle_keys(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -144,7 +152,6 @@ class Food(object):
         r = pygame.Rect((self.position[0], self.position[1]), (GRID, GRID))
         pygame.draw.rect(surface, self.color, r)
         pygame.draw.rect(surface, (255, 0, 0), r, 1)
-dis = pygame.display.set_mode((WIDTH, HEIGHT))
 
 def main():
     pygame.init()
